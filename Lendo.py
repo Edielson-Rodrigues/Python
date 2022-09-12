@@ -54,3 +54,8 @@ class Sorteio:
 
 Sorteio()
 
+'''
+OBS: Para o programa funcionar crie um arquivo txt 'Lista.txt', ou caso prefira mude o nome, mas lembre-se de alterar o nome no código,
+    após criar o arquivo, o preencha com algum tipo de lista ou texto, (para funcionar ele deverá está no mesmo diretório que o arquivo python, caso contrário
+    será necesssário informar o caminho no with).
+'''
