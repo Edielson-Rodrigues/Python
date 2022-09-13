@@ -15,29 +15,33 @@ class Sorteio:
         gruposDefinitivos = []; posicoesSorteadas = []
 
         #formando os grupos
-        for i in range(int(totalDeGrupos)):
-            cont = 0
-            condicao = True
-            grupo = []
+        if totalDeGrupos >= 2:
+            for i in range(totalDeGrupos):
+                cont = 0
+                condicao = True
+                grupo = []
+                
+                while condicao:
+                    numeroSorteado = None
+                    while cont < 5:  #montando grupos de 5
+                        numeroSorteado = random.randrange(0, len(lista)) #sorteando
+                        if numeroSorteado in posicoesSorteadas: numeroSorteado = None #vereficando se a pessoa já foi sorteada
+                        else:
+                            grupo.append(lista[numeroSorteado]) #adicionando pessoa0 no grupo
+                            posicoesSorteadas.append(numeroSorteado) #guardando as posições já sorteadas 
+                            cont += 1
+                        if cont == 5:
+                            gruposDefinitivos.append(grupo)
+                            condicao = False
             
-            while condicao:
-                numeroSorteado = None
-                while cont < 5:  #montando grupos de 5
-                    numeroSorteado = random.randrange(0, len(lista)) #sorteando
-                    if numeroSorteado in posicoesSorteadas: numeroSorteado = None #vereficando se a pessoa já foi sorteada
-                    else:
-                        grupo.append(lista[numeroSorteado]) #adicionando pessoa0 no grupo
-                        posicoesSorteadas.append(numeroSorteado) #guardando as posições já sorteadas 
-                        cont += 1
-                    if cont == 5:
-                        gruposDefinitivos.append(grupo)
-                        condicao = False
-        
-        #vereficando se alguém ficou sem grupo
-        if len(lista) % 5 != 0:
-            for i in range(len(posicoesSorteadas)):
-                if posicoesSorteadas.count(i) == 0: #procurando quem tá sem grupo e adcionando no primeiro grupo
-                    gruposDefinitivos[0].append(lista[i])
+            #vereficando se alguém ficou sem grupo
+            if len(lista) % 5 != 0:
+                for i in range(len(posicoesSorteadas)):
+                    if posicoesSorteadas.count(i) == 0: #procurando quem tá sem grupo e adcionando no primeiro grupo
+                        gruposDefinitivos[0].append(lista[i])
+        else:
+            gruposDefinitivos.append(lista)
+            
 
         #apresentando resultado
         print('-'*55)
@@ -56,6 +60,6 @@ Sorteio()
 
 '''
 OBS: Para o programa funcionar crie um arquivo txt 'Lista.txt', ou caso prefira mude o nome, mas lembre-se de alterar o nome no código,
-    após criar o arquivo, o preencha com algum tipo de lista ou texto, (para funcionar ele deverá está no mesmo diretório que o arquivo python, caso contrário
+    após criar o arquivo o preencha com algum tipo de lista ou texto, (para funcionar ele deverá está no mesmo diretório que o arquivo python, caso contrário
     será necesssário informar o caminho no with).
 '''
